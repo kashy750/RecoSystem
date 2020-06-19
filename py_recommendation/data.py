@@ -2,10 +2,10 @@
 
 class ItemData(object):
 	"""docstring for ItemData"""
-	def __init__(self, itemName, itemTags="", itemDesc=""):
-		self.itemName = itemName
-		self.itemTags = itemTags
-		self.itemDesc = itemDesc
+	def __init__(self, itemName_list, itemTags_list=[], itemDesc_list=[]):
+		self.itemNames = itemName_list
+		self.itemTags = itemTags_list
+		self.itemDescs = itemDesc_list
 
 
 class UserData(object):
