@@ -44,7 +44,7 @@ setup(
     install_requires=requirements,
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],
-    keywords='here api',
+    keywords='recommender system recommendation engine',
     classifiers=[
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
