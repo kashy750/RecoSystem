@@ -51,6 +51,5 @@ class InputData(Utils):
 			return itemData
 
 		except Exception as e:
-		# except ValueError as e:
 			err = RecoError('Error occured while loading the data ' + sys._getframe(1).f_code.co_name + ' ' + str(e))
 			raise err
