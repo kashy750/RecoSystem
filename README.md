@@ -47,11 +47,11 @@ Configure Data
 sample_items_data = {"title":['Place-A','Place-B','Place-C','Place-D','Place-E','Place-F','Place-G'],
             "tags":[
                 'party & dance, nightlife, food, bar & restaurant, enjoy family',
-                'Historic old monument, landmarks & enjoy beautiful',
-                'beach party bar nightlife water beautiful',
-                'temple historic old peaceful rest family',
-                'nature waterfall water beauty green',
-                'hills himalaya snow beautiful nature water peace',
+                'Historic old monument, landmarks & enjoy$ beautiful',
+                'Beach party, bar & nightlife @water, Beautiful',
+                'Old Historic Temple, peaceful & rest, Family vacation',
+                'Nature waterfall & green, beauty water',
+                'Beautiful Himalaya hills, nature snow, water & peace',
                 'Sights & Landmarks, Monuments & Statues'
             ]
            }
