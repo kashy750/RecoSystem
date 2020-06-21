@@ -55,7 +55,7 @@ sample_items_data = {"title":['Place-A','Place-B','Place-C','Place-D','Place-E',
                 'Sights & Landmarks, Monuments & Statues'
             ]
            }
-itemData = item_obj.setData(
+itemData = itemsInitialise.setData(
     data = sample_items_data,
     itemNameField = 'title',
     itemTagField = 'tags',
@@ -90,7 +90,7 @@ sample_users_data = {"names":['Professor','Lisbon','Berlin','Nairobi','Helsinki'
             ]
            }
 
-usersData = user_obj.setData(
+usersData = usersInitialise.setData(
     data = sample_users_data,
     userNameField = 'names',
     triedItemField = 'visited',
@@ -112,8 +112,8 @@ recommendation = contentRecommendInit.contentRecomend('Lisbon')
 ```
 
 
-**recommendation** carries a list with each recommended items and their recommendation score on 100. &nbsp;
-NB: *'recommendation' might have items with negative score which implies the item is already tried. This scenario occurs only if you have less number of items in 'ItemData'*
+* **recommendation** carries a list with each recommended items and their recommendation score on 100.
+* **recommendation** might have items with negative score which implies the item is already tried. This scenario occurs only if you have less number of items in 'ItemData'
 
 
 
