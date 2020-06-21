@@ -16,7 +16,15 @@ def getTopReco(scoreNarray, n, removeIndexList):
 	return list(zip(indices, scores))
 
 class SimilarItem(ItemProfile):
-	"""docstring for SimilarItem"""
+	"""
+    Used for Initialise(configuring) an items based similarity recommender.
+    Args:
+        itemData (py_recommendation.data.Item): Object containing the entire items data
+    Returns:
+        None
+    Methods:
+        similarItem() : get similar item recommendation based on given item
+    """
 	def __init__(self, itemData):
 		super().__init__(itemData)
 		self.similarityMatrix()
@@ -25,6 +33,18 @@ class SimilarItem(ItemProfile):
 		self.__simMat_itemItem = cosine_similarity(self.itemProfile, self.itemProfile)
 		
 	def similarItem(self, subItem, recoCount = 5):
+		"""
+		Method is used for getting recommendation based on items similar to the given item
+        Args:
+          subItem (str):
+            Item name/id based on which the recommendation is generated
+          recoCount (int) [default: 5]:
+            Number of recommendations required
+        Returns:
+          Recommendtion :item and score-percentage (json) 
+        Raises:
+          RecoError
+        """
 		try:
 			itemIndex = self.itemData.itemNames.index(subItem)
 		except Exception as e:
@@ -47,7 +67,16 @@ class SimilarItem(ItemProfile):
 			raise err
 
 class UserContent(UserProfile):
-	"""docstring for UserContent"""
+	"""
+    Used for Initializing(configuring) recommender based on user history.
+    Args:
+        itemData (py_recommendation.data.Item): Object containing the entire items data
+        usersData (py_recommendation.data.Users): Object containing the entire users data
+    Returns:
+        None
+    Methods:
+        contentRecomend() : get recommendation based on user history
+    """
 	def __init__(self, itemData, usersData):
 		super().__init__(itemData, usersData)
 
@@ -57,6 +86,18 @@ class UserContent(UserProfile):
 		
 	
 	def contentRecomend(self, userId, recoCount=5):
+		"""
+		Method is used for getting recommendation based on user history
+        Args:
+          userId (str):
+            User name/id for which the recommendation is generated
+          recoCount (int) [default: 5]:
+            Number of recommendations required
+        Returns:
+          Recommendtion :item and score-percentage (json) 
+        Raises:
+          RecoError
+        """
 		try:
 			userIndex = self.usersData.userIds.index(userId)
 		except Exception as e:

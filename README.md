@@ -39,20 +39,32 @@ Generate input data object which can be used for various types of recommendation
 
 #### Items Data
 ```python
-itemsInitialise = prc.InputData()
+itemsInitialise = prc.ItemData()
 ```
 Configure Data
 ```python
-ItemData = itemsInitialise.setData(
-    data = 'variable carrying items data as either of dict, list of dicts or a pandas dataframe ',
-    itemNameField = 'field name in data variable, carrying the item name/id',
-    itemTagField = 'field name in data variable, carrying the item features',
+# Reffer from sample data given below:
+sample_items_data = {"title":['Place-A','Place-B','Place-C','Place-D','Place-E','Place-F','Place-G'],
+            "tags":[
+                'party & dance, nightlife, food, bar & restaurant, enjoy family',
+                'Historic old monument, landmarks & enjoy beautiful',
+                'beach party bar nightlife water beautiful',
+                'temple historic old peaceful rest family',
+                'nature waterfall water beauty green',
+                'hills himalaya snow beautiful nature water peace',
+                'Sights & Landmarks, Monuments & Statues'
+            ]
+           }
+itemData = item_obj.setData(
+    data = sample_items_data,
+    itemNameField = 'title',
+    itemTagField = 'tags',
     )
 ```
 
 Or else set data from file,
 ```python
-ItemData = itemsInitialise.setData_file(
+itemData = itemsInitialise.setData_file(
     filePath = 'path to the data file',
     itemName_col = 'column name carrying the item name/id',
     itemTag_col = 'column name carrying the item features',
@@ -66,10 +78,22 @@ usersInitialise = prc.UsersData()
 ```
 Configure Data
 ```python
-UsersData = usersInitialise.setData(
-    data = 'variable carrying users data as either of dict, list of dicts or a pandas dataframe ',
-    userNameField = 'field name in data variable, carrying the user name/id',
-    triedItemField = 'field name in data variable, carrying the list of items tried by the user',
+# Reffer from sample data given below:
+sample_users_data = {"names":['Professor','Lisbon','Berlin','Nairobi','Helsinki','Rio'],
+            "visited":[
+                ['Place-B','Place-D'],
+                ['Place-D','Place-E'],
+                ['Place-B'],
+                ['Place-C','Place-E'],
+                ['Place-F'],
+                ['Place-A', 'Place-F']
+            ]
+           }
+
+usersData = user_obj.setData(
+    data = sample_users_data,
+    userNameField = 'names',
+    triedItemField = 'visited',
     )
 ```
 
@@ -77,19 +101,19 @@ UsersData = usersInitialise.setData(
 This is used to find other items similar to the given item based on the features.
 
 ```python
-similarItemInit = prc.SimilarItem(ItemData)
-recommendation = similarItemInit.similarItem('Item name/id')
+similarItemInit = prc.SimilarItem(itemData)
+recommendation = similarItemInit.similarItem('Place-D')
 ```
 
 ## Content-based Recommeder for specific users based on items tried
 ```python
-contentRecommendInit = prc.UserContent(itemData=ItemData, usersData=UsersData)
-recommendation = contentRecommendInit.contentRecomend('name/id of a specific user (present in UsersData)')
+contentRecommendInit = prc.UserContent(itemData=itemData, usersData=usersData)
+recommendation = contentRecommendInit.contentRecomend('Lisbon')
 ```
 
 
-**recommendation** carries a list with each recommended items and their recommendation score on 100
-NB: * **recommendation** might have items with negative score which implies the item is already tried. This scenario occurs only if you have less number of items in 'ItemData'*
+**recommendation** carries a list with each recommended items and their recommendation score on 100. &nbsp;
+NB: *'recommendation' might have items with negative score which implies the item is already tried. This scenario occurs only if you have less number of items in 'ItemData'*
 
 
 

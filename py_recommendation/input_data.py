@@ -7,7 +7,16 @@ import numpy as np
 import sys
 
 class ItemData(Utils):
-	"""docstring for ItemData"""
+	"""
+    Used for Initializing(configuring) items data.
+    Args:
+        None
+    Returns:
+        None
+    Methods:
+        setData() : configuring data from a data variable
+        setData_file() : configuring data from a file
+    """
 	def __init__(self):
 		pass
 
@@ -34,6 +43,20 @@ class ItemData(Utils):
 		return itemData
 
 	def setData(self, data, itemNameField, itemDescField="", itemTagField=""):
+		"""
+		Method is used for configuring input data from a loaded data variable
+        Args:
+          data (dict/list/dataframe):
+            Items Data containg item information.
+          itemNameField (str):
+            Field name containing the item-names in the input data variable
+          itemTagField (str):
+            Field name containing the item-tags or item-description in the input data variable
+        Returns:
+          data.Item object
+        Raises:
+          RecoError
+        """
 		req_col = [itemNameField]
 		if itemDescField:
 			req_col.append(itemDescField)
@@ -62,6 +85,22 @@ class ItemData(Utils):
 			
 
 	def setData_file(self, filePath, itemNameField, itemDescField="", itemTagField="", itemTag_sep = ",", fileType='xlsx'):
+		"""
+		Method is used for configuring input data from a loaded data variable
+        Args:
+          filePath (str):
+            Path of file(.xlsx/.csv) that contains the Items data.
+          itemNameField (str):
+            Field name containing the item-names in the input data variable
+          itemTagField (str):
+            Field name containing the item-tags or item-description in the input data variable
+          fileType (str) [default: xlsx]:
+            Type of input file : 'xlsx'/'csv'
+        Returns:
+          data.Item object
+        Raises:
+          RecoError
+        """
 		req_col = [itemNameField]
 		if itemDescField:
 			req_col.append(itemDescField)
@@ -87,7 +126,15 @@ class ItemData(Utils):
 			raise err
 
 class UsersData():
-	"""docstring for UsersData"""
+	"""
+    Used for Initializing(configuring) items data.
+    Args:
+        None
+    Returns:
+        None
+    Methods:
+        setData() : configuring data from a data variable
+    """
 	def __init__(self):
 		pass
 
@@ -104,6 +151,20 @@ class UsersData():
 		return userData
 
 	def setData(self, data, userNameField, triedItemField):
+		"""
+		Method is used for configuring input data from a loaded data variable
+        Args:
+          data (dict/list/dataframe):
+            User Data containg user-item information.
+          userNameField (str):
+            Field name containing the user-names in the input data variable
+          triedItemField (str):
+            Field name containing the tried items(list) by the user in the input data variable
+        Returns:
+          data.Users object
+        Raises:
+          RecoError
+        """
 		if isinstance(data, dict):
 			df = pd.DataFrame(data)
 		elif isinstance(data, list):
